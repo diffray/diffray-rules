@@ -2,22 +2,30 @@
 name: simplicity
 description: Enforce DRY and KISS principles
 patterns:
-  - "src/**/*.ts"
-  - "bin/**/*.ts"
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.js"
+  - "**/*.jsx"
+  - "**/*.py"
+  - "**/*.go"
+  - "**/*.rs"
+  - "**/*.java"
+  - "**/*.rb"
+  - "**/*.php"
 agent: general
+severity: medium
 ---
 
-Flag violations of DRY (Don't Repeat Yourself) and KISS (Keep It Simple).
+Flag DRY and KISS violations.
 
-## Red flags
-- **DRY**: Duplicate logic across files, copy-pasted code
-- **KISS**: Abstractions with single implementation (Factory, Registry, Builder)
-- **KISS**: Wrapper functions/classes that just delegate
-- **KISS**: Files >300 lines mixing concerns
-- **KISS**: Vague names: `manager`, `handler`, `utils`
+## Flag
+- **DRY**: identical logic in 2+ places (>5 lines), copy-paste with minor changes
+- **KISS**: Factory/Builder/Registry with single implementation
+- **KISS**: wrapper that only delegates
+- **KISS**: file >300 lines mixing responsibilities
+- **KISS**: vague names (`Manager`, `Handler`, `Utils`, `Helper`)
 
 ## Ignore
-- Complexity required by external APIs
-- Abstractions with multiple implementations
-
-Suggest simpler alternative when flagging.
+- Complexity from external API/library
+- Abstraction with 2+ implementations
+- Test duplication
